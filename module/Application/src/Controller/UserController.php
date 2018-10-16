@@ -5,16 +5,17 @@ namespace Application\Controller;
 class UserController extends \system\Template\AbstractController {
 
     public function indexAction() {
-        
+
         return [];
     }
 
-    public function loginAction(){
+    public function loginAction() {
 
-        $this->setLayout('index/outside.tami');
-        
+        $this->setLayout('TAMI_NOLAYOUT');
+
         return [
-            'thuc'=>'lam sao vay?'
+            'thuc' => 'lam sao vay?'
         ];
     }
+
 }

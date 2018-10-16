@@ -13,16 +13,13 @@ class System {
                 $layout->setLayout($init['layout']);
                 $layout->setViewFile($init['view_file']);
 
-                
+
                 //init parameters
                 if (isset($init['parameters']) && $init['parameters']) {
                     $layout->setParams($init['parameters']);
                 }
 
-                if (!file_exists($init["layout"])) {
-                    echo "Layout: {$init["layout"]} not exists";
-                    exit;
-                }
+
 
                 if (!file_exists($init["view_file"])) {
                     echo "View file: {$init["view_file"]} not exists";
@@ -32,7 +29,20 @@ class System {
                 //set view dir
                 $layout->setViewDir($init['view_dir']);
 
-                $layout->showLayout();
+
+                //check no layout
+                if ($init['layout'] != 'TAMI_NOLAYOUT') {
+                    
+                    //check file layout exists
+                    if (!file_exists($init["layout"])) {
+                        echo "Layout: {$init["layout"]} not exists";
+                        exit;
+                    }
+                    
+                    $layout->showLayout();
+                } else {
+                    $layout->showViewFile();
+                }
             } else {
                 echo "Not exists view file";
                 exit;
@@ -104,7 +114,11 @@ class System {
                 //set layout
                 $layout = $config["layout"];
                 if ($obj->getLayout()) {
-                    $layout = $config['view_dir'] . $obj->getLayout();
+                    if ($obj->getLayout() != 'TAMI_NOLAYOUT') {
+                        $layout = $config['view_dir'] . $obj->getLayout();
+                    } else {
+                        $layout = $obj->getLayout();
+                    }
                 }
 
                 return [
