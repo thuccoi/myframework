@@ -9,6 +9,7 @@ class Layout {
     private $layout;
     private $url;
     private $view_dir;
+    private $params = [];
 
     //function set and get
     public function setTitle($title) {
@@ -56,6 +57,15 @@ class Layout {
         return $this->url;
     }
 
+    public function setParams($params) {
+        $this->params = $params;
+        return $this;
+    }
+
+    public function getParams() {
+        return $this->params;
+    }
+
     //function show
     public function showLayout(array $params = null) {
         //make parameters
@@ -76,6 +86,11 @@ class Layout {
             }
         }
 
+        //set view params in action
+        foreach ($this->params as $key => $val) {
+            $$key = $val;
+        }
+
         require_once $this->getViewFile();
     }
 
@@ -92,7 +107,7 @@ class Layout {
             echo "View file not exists";
             exit;
         }
-        
+
         //make parameters
         if ($params) {
             foreach ($params as $key => $val) {

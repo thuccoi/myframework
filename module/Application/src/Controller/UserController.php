@@ -9,4 +9,12 @@ class UserController extends \system\Template\AbstractController {
         return [];
     }
 
+    public function loginAction(){
+
+        $this->setLayout('index/outside.tami');
+        
+        return [
+            'thuc'=>'lam sao vay?'
+        ];
+    }
 }

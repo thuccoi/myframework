@@ -13,11 +13,10 @@ class System {
                 $layout->setLayout($init['layout']);
                 $layout->setViewFile($init['view_file']);
 
+                
                 //init parameters
                 if (isset($init['parameters']) && $init['parameters']) {
-                    foreach ($init['parameters'] as $key => $val) {
-                        $$key = $val;
-                    }
+                    $layout->setParams($init['parameters']);
                 }
 
                 if (!file_exists($init["layout"])) {
@@ -67,8 +66,6 @@ class System {
             \system\Helper\HTML::addQuery($code, $arrrequest[1]);
         }
 
-
-
         $router = \system\Helper\HTML::getPathUri($code, $path, $sysconfig);
 
         $module = $router->getModule();
@@ -92,7 +89,6 @@ class System {
 
                 $objfactory = new $factory;
 
-
                 //init controller
                 $obj = $objfactory($config['controller'], $router, $code, $sysconfig, []);
 
@@ -102,15 +98,19 @@ class System {
                     exit;
                 }
 
-
                 //get parameters 
                 $parameters = $obj->{$action . "Action"}();
 
+                //set layout
+                $layout = $config["layout"];
+                if ($obj->getLayout()) {
+                    $layout = $config['view_dir'] . $obj->getLayout();
+                }
 
                 return [
                     "parameters" => $parameters,
                     "view_file" => $config['view_dir'] . $controller . '/' . $action . '.tami',
-                    "layout" => $config["layout"],
+                    "layout" => $layout,
                     "view_dir" => $config['view_dir']
                 ];
             } else {
