@@ -1,0 +1,11 @@
+{
+    "server": {
+        "username": "",
+        "password": "",
+        "host": "127.0.0.1",
+        "port": "27017",
+        "database":""
+    },
+    "public_port": "3000",
+    "public_ip": "127.0.0.1"
+}
