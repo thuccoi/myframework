@@ -1,0 +1,16 @@
+{
+    "datatable": {
+        "data": [
+            {
+                "name": "name 1",
+                "content": "content 1",
+                "date": "12-10-2018"
+            },
+            {
+                "name": "name 2",
+                "content": "content 2",
+                "date": "13-10-2018"
+            }
+        ]
+    }
+}

@@ -1,0 +1,17 @@
+{
+
+    "post": {
+        "data": [
+            {
+                "name": "post 1",
+                "content": "content 1",
+                "user": "user 1"
+            },
+            {
+                "name": "post 2",
+                "content": "content 2",
+                "user": "user 2"
+            }
+        ]
+    }
+}
