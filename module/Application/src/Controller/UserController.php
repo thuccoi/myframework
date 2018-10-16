@@ -10,7 +10,8 @@ class UserController extends \system\Template\AbstractController {
     }
 
     public function loginAction() {
-
+        
+        //set no layout
         $this->setLayout('TAMI_NOLAYOUT');
 
         return [
