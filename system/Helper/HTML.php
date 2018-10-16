@@ -95,5 +95,4 @@ class HTML {
 
         return $router;
     }
-
 }

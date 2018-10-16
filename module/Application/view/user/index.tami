@@ -1,5 +1,1 @@
-<?php
-
-print_r($dat);
-
-echo "View of TAMI";
+Index of UserController

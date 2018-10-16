@@ -6,7 +6,12 @@ class System {
 
     public static function run($init) {
         if ($init) {
-            if (isset($init["view_file"])) {
+            if (isset($init["view_file"]) && isset($init['layout'])) {
+
+                $layout = new \system\Template\Layout();
+
+                $layout->setLayout($init['layout']);
+                $layout->setViewFile($init['view_file']);
 
                 //init parameters
                 if (isset($init['parameters']) && $init['parameters']) {
@@ -15,12 +20,20 @@ class System {
                     }
                 }
 
+                if (!file_exists($init["layout"])) {
+                    echo "Layout: {$init["layout"]} not exists";
+                    exit;
+                }
+
                 if (!file_exists($init["view_file"])) {
                     echo "View file: {$init["view_file"]} not exists";
                     exit;
                 }
 
-                require_once $init["view_file"];
+                //set view dir
+                $layout->setViewDir($init['view_dir']);
+
+                $layout->showLayout();
             } else {
                 echo "Not exists view file";
                 exit;
@@ -32,7 +45,7 @@ class System {
     }
 
     public static function init() {
-        
+
         //get config of system
         $sysconfig = \system\Template\Container::getSysConfig();
 
@@ -96,7 +109,9 @@ class System {
 
                 return [
                     "parameters" => $parameters,
-                    "view_file" => $config['view_dir'] . $controller . '/' . $action . '.tami'
+                    "view_file" => $config['view_dir'] . $controller . '/' . $action . '.tami',
+                    "layout" => $config["layout"],
+                    "view_dir" => $config['view_dir']
                 ];
             } else {
                 echo "Not found controller config";
@@ -119,6 +134,18 @@ class System {
             $config = $obj->getConfig();
 
             if (isset($config['router'])) {
+
+                //check view manager
+                if (!isset($config['view_manager'])) {
+                    echo "Not config view manager";
+                    exit;
+                }
+
+                if (!isset($config['view_manager']['layout'])) {
+                    echo "Not config layout of view manager";
+                    exit;
+                }
+
 
                 //accept module config
                 if (isset($config['router'][$module])) {
@@ -148,7 +175,8 @@ class System {
                         return [
                             "controller" => $config['router'][$module][$controller],
                             "factory" => $factory,
-                            "view_dir" => DIR_ROOT . '/module/' . $val . '/view/'
+                            "view_dir" => DIR_ROOT . 'module/' . $val . '/view/',
+                            "layout" => $config['view_manager']['layout'],
                         ];
                     } else {
                         echo 'Controller Not found';

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php
+        $this->title("Học làm sản phẩm");
+        ?>
+    </head>
+    <body>
+        
+        <?php
+        $this->partial('layout/layout/head.tami');
+        ?>
+        
+        <?php
+        $this->partial('layout/layout/left.tami');
+        $this->partial('layout/layout/right.tami');
+        ?>
+        
+        <?php
+        $this->showViewFile();
+        ?>
+
+    <foot>
+        <?php
+        $this->partial('layout/layout/foot.tami');
+        ?>
+    </foot>
+</body>
+</html>
