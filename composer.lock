@@ -4,12 +4,45 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4873169e7a90c533ee714274bdc70aad",
-    "packages": [],
+    "content-hash": "5a1418d1d1e99f927cb8609207d9c0a2",
+    "packages": [
+        {
+            "name": "tami/system",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thuccoi/package.git",
+                "reference": "d8d9ed5b7a5f88d0e9c67782fef8e717f2c33748"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thuccoi/package/zipball/d8d9ed5b7a5f88d0e9c67782fef8e717f2c33748",
+                "reference": "d8d9ed5b7a5f88d0e9c67782fef8e717f2c33748",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "system": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Nguyen The Thuc",
+                    "email": "thucfami@gmail.com"
+                }
+            ],
+            "description": "system of tami",
+            "time": "2018-10-16T16:45:18+00:00"
+        }
+    ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "tami/system": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
